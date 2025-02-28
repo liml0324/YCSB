@@ -121,6 +121,11 @@ LICENSE file.
     </dependency>
     <dependency>
       <groupId>site.ycsb</groupId>
+      <artifactId>fileio-binding</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>site.ycsb</groupId>
       <artifactId>foundationdb-binding</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -259,7 +264,7 @@ LICENSE file.
       <artifactId>s3-binding</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
+    <!-- <dependency>
       <groupId>site.ycsb</groupId>
       <artifactId>solr-binding</artifactId>
       <version>${project.version}</version>
@@ -268,7 +273,7 @@ LICENSE file.
       <groupId>site.ycsb</groupId>
       <artifactId>solr6-binding</artifactId>
       <version>${project.version}</version>
-    </dependency>
+    </dependency> -->
     <dependency>
       <groupId>site.ycsb</groupId>
       <artifactId>tarantool-binding</artifactId>

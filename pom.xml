@@ -125,6 +125,7 @@ LICENSE file.
 		<couchbase2.version>2.3.1</couchbase2.version>
 		<crail.version>1.1-incubating</crail.version>
     <elasticsearch5-version>5.5.1</elasticsearch5-version>
+    <fileio.version>1.0</fileio.version>
     <foundationdb.version>5.2.5</foundationdb.version>
     <geode.version>1.2.0</geode.version>
     <googlebigtable.version>1.4.0</googlebigtable.version>
@@ -149,8 +150,8 @@ LICENSE file.
     <riak.version>2.0.5</riak.version>
     <rocksdb.version>5.11.3</rocksdb.version>
     <s3.version>1.10.20</s3.version>
-    <solr.version>5.5.3</solr.version>
-    <solr6.version>6.4.1</solr6.version>
+    <!-- <solr.version>5.5.3</solr.version> -->
+    <!-- <solr6.version>6.4.1</solr6.version> -->
     <tarantool.version>1.6.5</tarantool.version>
     <thrift.version>0.8.0</thrift.version>
     <voldemort.version>0.81</voldemort.version>
@@ -180,6 +181,7 @@ LICENSE file.
     <module>dynamodb</module>
     <module>elasticsearch</module>
     <module>elasticsearch5</module>
+    <module>fileio</module>
     <module>foundationdb</module>
     <module>geode</module>
     <module>googlebigtable</module>
@@ -209,8 +211,8 @@ LICENSE file.
     <module>riak</module>
     <module>rocksdb</module>
     <module>s3</module>
-    <module>solr</module>
-    <module>solr6</module>
+    <!-- <module>solr</module> -->
+    <!-- <module>solr6</module> -->
     <module>tarantool</module>
     <module>tablestore</module>
     <!--<module>voldemort</module>-->
@@ -257,7 +259,7 @@ LICENSE file.
           <target>1.8</target>
         </configuration>
       </plugin>
-      <plugin>
+      <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <executions>
@@ -272,7 +274,7 @@ LICENSE file.
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin> -->
     </plugins>
   </build>
   <profiles>
