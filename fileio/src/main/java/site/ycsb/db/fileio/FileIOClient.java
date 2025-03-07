@@ -20,15 +20,22 @@ import java.util.concurrent.locks.ReentrantLock;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class FileIOClient extends DB {
-    // static {
-    // System.loadLibrary("libJAVASPTAGFileIO");
-    // }
+    static {
+        // System.setProperty("java.library.path", "/home/lml/YCSB/fileio/src/main/native");
+        // System.loadLibrary("JAVASPTAGFileIO");
+        // System.load("/home/lml/YCSB/fileio/src/main/native/libJAVASPTAG.so");
+        // System.load("/home/lml/YCSB/fileio/src/main/native/libSPTAGLib.so");
+        System.load("/home/lml/YCSB/fileio/src/main/native/libJAVASPTAGFileIO.so");
+    }
     @Override
     public void init() throws DBException {
         if (fileIO == null) {
-            fileIO = new FileIOInterface("/mnt/nvme0n1/lml/fileio", 4096, 1000000, 1000, 4096, 1000, false, 1);
+            fileIO = new FileIOInterface("/mnt/nvme0n1/lml/fileio", 4096, 1000000, 1000, 1024, 64, false, 1);
         }
-        fileIO.Initialize();
+        boolean result = fileIO.Initialize();
+        if (!result) {
+            throw new DBException("FileIO initialization failed");
+        }
     }
 
     @Override
@@ -39,9 +46,13 @@ public class FileIOClient extends DB {
     @Override
     public Status read(String table, String key, Set<String> fields, Map<String, ByteIterator> result) {
         String input = key.replaceFirst("^user0*", "");
-        int keyHash = Integer.parseInt(input);
+        int keyHash = 0;
+        if (!input.isEmpty()) {
+            keyHash = Integer.parseInt(input);
+        }
         String value = fileIO.Get(keyHash);
         if (value == null) {
+            System.err.println("FileIOClient: read failed");
             return Status.ERROR;
         }
         deserializeValues(value.getBytes(StandardCharsets.ISO_8859_1), fields, result);
@@ -64,7 +75,10 @@ public class FileIOClient extends DB {
     @Override
     public Status insert(String table, String key, Map<String, ByteIterator> values) {
         String input = key.replaceFirst("^user0*", "");
-        int keyHash = Integer.parseInt(input);
+        int keyHash = 0;
+        if (!input.isEmpty()) {
+            keyHash = Integer.parseInt(input);
+        }
         try {
             byte[] serializedValues = serializeValues(values);
             boolean result = fileIO.Put(keyHash, new String(serializedValues, StandardCharsets.ISO_8859_1));
