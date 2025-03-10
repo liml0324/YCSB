@@ -60,12 +60,18 @@ public class FileIOInterface {
     JAVAFileIOJNI.FileIOInterface_ShutDown(swigCPtr, this);
   }
 
+  public byte[] GetByteArray(int key) { return JAVAFileIOJNI.FileIOInterface_GetByteArray(swigCPtr, this, key); }
+
+  public boolean Get(int key, SWIGTYPE_p_std__string value) {
+    return JAVAFileIOJNI.FileIOInterface_Get__SWIG_0(swigCPtr, this, key, SWIGTYPE_p_std__string.getCPtr(value));
+  }
+
   public String Get(int key) {
-    return JAVAFileIOJNI.FileIOInterface_Get__SWIG_0(swigCPtr, this, key);
+    return JAVAFileIOJNI.FileIOInterface_Get__SWIG_1(swigCPtr, this, key);
   }
 
   public String Get(String key) {
-    return JAVAFileIOJNI.FileIOInterface_Get__SWIG_1(swigCPtr, this, key);
+    return JAVAFileIOJNI.FileIOInterface_Get__SWIG_2(swigCPtr, this, key);
   }
 
   public boolean MultiGet(SWIGTYPE_p_std__vectorT_int_t keys, SWIGTYPE_p_std__vectorT_std__string_t values, SWIGTYPE_p_std__chrono__microseconds timeout) {
@@ -88,8 +94,12 @@ public class FileIOInterface {
     return JAVAFileIOJNI.FileIOInterface_Put__SWIG_0(swigCPtr, this, key, value);
   }
 
-  public boolean Put(String key, String value) {
+  public boolean Put(int key, byte[] value) {
     return JAVAFileIOJNI.FileIOInterface_Put__SWIG_1(swigCPtr, this, key, value);
+  }
+
+  public boolean Put(String key, String value) {
+    return JAVAFileIOJNI.FileIOInterface_Put__SWIG_2(swigCPtr, this, key, value);
   }
 
   public boolean Merge(int key, String value) {

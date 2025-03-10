@@ -64,16 +64,20 @@ public class FileIO extends KeyValueIO {
     return new SWIGTYPE_p_unsigned_int(JAVAFileIOJNI.FileIO_At(swigCPtr, this, key), false);
   }
 
+  public SWIGTYPE_p_SPTAG__ErrorCode Get(int key, SWIGTYPE_p_SPTAG__ByteArray value) {
+    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Get__SWIG_0(swigCPtr, this, key, SWIGTYPE_p_SPTAG__ByteArray.getCPtr(value)), true);
+  }
+
   public SWIGTYPE_p_SPTAG__ErrorCode Get(int key, SWIGTYPE_p_std__string value) {
-    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Get__SWIG_0(swigCPtr, this, key, SWIGTYPE_p_std__string.getCPtr(value)), true);
+    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Get__SWIG_1(swigCPtr, this, key, SWIGTYPE_p_std__string.getCPtr(value)), true);
   }
 
   public SWIGTYPE_p_SPTAG__ErrorCode Get(int key, SWIGTYPE_p_std__string value, SWIGTYPE_p_std__chrono__microseconds timeout) {
-    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Get__SWIG_1(swigCPtr, this, key, SWIGTYPE_p_std__string.getCPtr(value), SWIGTYPE_p_std__chrono__microseconds.getCPtr(timeout)), true);
+    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Get__SWIG_2(swigCPtr, this, key, SWIGTYPE_p_std__string.getCPtr(value), SWIGTYPE_p_std__chrono__microseconds.getCPtr(timeout)), true);
   }
 
   public SWIGTYPE_p_SPTAG__ErrorCode Get(String key, SWIGTYPE_p_std__string value) {
-    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Get__SWIG_2(swigCPtr, this, key, SWIGTYPE_p_std__string.getCPtr(value)), true);
+    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Get__SWIG_3(swigCPtr, this, key, SWIGTYPE_p_std__string.getCPtr(value)), true);
   }
 
   public SWIGTYPE_p_SPTAG__ErrorCode MultiGet(SWIGTYPE_p_std__vectorT_int_t keys, SWIGTYPE_p_std__vectorT_std__string_t values, SWIGTYPE_p_std__chrono__microseconds timeout) {
@@ -96,8 +100,12 @@ public class FileIO extends KeyValueIO {
     return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Put__SWIG_0(swigCPtr, this, key, value), true);
   }
 
+  public SWIGTYPE_p_SPTAG__ErrorCode Put(int key, SWIGTYPE_p_SPTAG__ByteArray value) {
+    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Put__SWIG_1(swigCPtr, this, key, SWIGTYPE_p_SPTAG__ByteArray.getCPtr(value)), true);
+  }
+
   public SWIGTYPE_p_SPTAG__ErrorCode Put(String key, String value) {
-    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Put__SWIG_1(swigCPtr, this, key, value), true);
+    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Put__SWIG_2(swigCPtr, this, key, value), true);
   }
 
   public SWIGTYPE_p_SPTAG__ErrorCode Merge(int key, String value) {

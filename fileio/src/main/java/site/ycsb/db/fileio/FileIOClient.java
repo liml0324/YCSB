@@ -29,18 +29,36 @@ public class FileIOClient extends DB {
     }
     @Override
     public void init() throws DBException {
-        if (fileIO == null) {
-            fileIO = new FileIOInterface("/mnt/nvme0n1/lml/fileio", 4096, 1000000, 1000, 1024, 64, false, 1);
-        }
-        boolean result = fileIO.Initialize();
-        if (!result) {
-            throw new DBException("FileIO initialization failed");
+        synchronized (FileIOClient.class) {
+            String mode = getProperties().getProperty(MODE, "load");
+            System.err.println("FileIOClient: init mode = " + mode);
+            if (fileIO == null) {
+                if (mode.equals("load")) {
+                    fileIO = new FileIOInterface("/mnt/nvme0n1/lml/fileio", 4096, 1000000, 1000, 1024, 64, false, 1);
+                }
+                else {
+                    fileIO = new FileIOInterface("/mnt/nvme0n1/lml/fileio", 4096, 1000000, 1000, 1024, 64, true, 1);
+                }
+                fileIO.GetStat();
+            }
+            boolean result = fileIO.Initialize();
+            if (!result) {
+                throw new DBException("FileIO initialization failed");
+            }
+            references++;
         }
     }
 
     @Override
     public void cleanup() throws DBException {
-        fileIO.ExitBlockController();
+        synchronized (FileIOClient.class) {
+            fileIO.ExitBlockController();
+            if(references == 1) {
+                fileIO.GetStat();
+                fileIO.Checkpoint("/mnt/nvme0n1/lml/fileio");
+            }
+            references--;
+        }
     }
 
     @Override
@@ -50,12 +68,12 @@ public class FileIOClient extends DB {
         if (!input.isEmpty()) {
             keyHash = Integer.parseInt(input);
         }
-        String value = fileIO.Get(keyHash);
-        if (value == null) {
+        byte[] value = fileIO.GetByteArray(keyHash);
+        if (value.length == 0) {
             System.err.println("FileIOClient: read failed");
             return Status.ERROR;
         }
-        deserializeValues(value.getBytes(StandardCharsets.ISO_8859_1), fields, result);
+        deserializeValues(value, fields, result);
         return Status.OK;
     }
 
@@ -81,7 +99,7 @@ public class FileIOClient extends DB {
         }
         try {
             byte[] serializedValues = serializeValues(values);
-            boolean result = fileIO.Put(keyHash, new String(serializedValues, StandardCharsets.ISO_8859_1));
+            boolean result = fileIO.Put(keyHash, serializedValues);
             if (!result) {
                 return Status.ERROR;
             }
@@ -157,5 +175,7 @@ public class FileIOClient extends DB {
         }
     }
 
-    private FileIOInterface fileIO = null;
+    @GuardedBy("FileIOClient.class") private static FileIOInterface fileIO = null;
+    @GuardedBy("FileIOClient.class") private static int references = 0;
+    static final String MODE = "mode";
 }
