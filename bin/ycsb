@@ -73,6 +73,7 @@ DATABASES = {
     "elasticsearch": "site.ycsb.db.ElasticsearchClient",
     "elasticsearch5": "site.ycsb.db.elasticsearch5.ElasticsearchClient",
     "elasticsearch5-rest": "site.ycsb.db.elasticsearch5.ElasticsearchRestClient",
+    "fileio"        : "site.ycsb.db.fileio.FileIOClient",
     "foundationdb" : "site.ycsb.db.foundationdb.FoundationDBClient",
     "geode"        : "site.ycsb.db.GeodeClient",
     "googlebigtable"  : "site.ycsb.db.GoogleBigtableClient",
@@ -329,6 +330,7 @@ def main():
         classpath = os.pathsep.join([args.classpath, classpath])
 
     ycsb_command = ([java] + args.jvm_args +
+                    # ["-verbose:jni"] +
                     ["-cp", classpath,
                      main_classname, "-db", db_classname] + remaining)
     if command:
