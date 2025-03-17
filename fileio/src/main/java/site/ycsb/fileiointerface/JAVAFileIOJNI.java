@@ -47,6 +47,8 @@ public class JAVAFileIOJNI {
   public final static native long FileIO_MultiGet__SWIG_1(long jarg1, FileIO jarg1_, long jarg2, long jarg3);
   public final static native long FileIO_MultiGet__SWIG_2(long jarg1, FileIO jarg1_, long jarg2, long jarg3, long jarg4);
   public final static native long FileIO_MultiGet__SWIG_3(long jarg1, FileIO jarg1_, long jarg2, long jarg3);
+  public final static native long FileIO_Scan__SWIG_0(long jarg1, FileIO jarg1_, int jarg2, int jarg3, long jarg4, long jarg5);
+  public final static native long FileIO_Scan__SWIG_1(long jarg1, FileIO jarg1_, int jarg2, int jarg3, long jarg4);
   public final static native long FileIO_Put__SWIG_0(long jarg1, FileIO jarg1_, int jarg2, String jarg3);
   public final static native long FileIO_Put__SWIG_1(long jarg1, FileIO jarg1_, int jarg2, long jarg3);
   public final static native long FileIO_Put__SWIG_2(long jarg1, FileIO jarg1_, String jarg2, String jarg3);
@@ -73,6 +75,7 @@ public class JAVAFileIOJNI {
   public final static native boolean FileIOInterface_Get__SWIG_0(long jarg1, FileIOInterface jarg1_, int jarg2, long jarg3);
   public final static native String FileIOInterface_Get__SWIG_1(long jarg1, FileIOInterface jarg1_, int jarg2);
   public final static native String FileIOInterface_Get__SWIG_2(long jarg1, FileIOInterface jarg1_, String jarg2);
+  public final static native long FileIOInterface_Scan(long jarg1, FileIOInterface jarg1_, int jarg2, int jarg3);
   public final static native boolean FileIOInterface_MultiGet__SWIG_0(long jarg1, FileIOInterface jarg1_, long jarg2, long jarg3, long jarg4);
   public final static native boolean FileIOInterface_MultiGet__SWIG_1(long jarg1, FileIOInterface jarg1_, long jarg2, long jarg3);
   public final static native boolean FileIOInterface_MultiGet__SWIG_2(long jarg1, FileIOInterface jarg1_, long jarg2, long jarg3, long jarg4);

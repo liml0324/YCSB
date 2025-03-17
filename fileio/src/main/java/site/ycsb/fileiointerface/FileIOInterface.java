@@ -74,6 +74,10 @@ public class FileIOInterface {
     return JAVAFileIOJNI.FileIOInterface_Get__SWIG_2(swigCPtr, this, key);
   }
 
+  public SWIGTYPE_p_std__vectorT_SPTAG__ByteArray_t Scan(int start_key, int record_count) {
+    return new SWIGTYPE_p_std__vectorT_SPTAG__ByteArray_t(JAVAFileIOJNI.FileIOInterface_Scan(swigCPtr, this, start_key, record_count), true);
+  }
+
   public boolean MultiGet(SWIGTYPE_p_std__vectorT_int_t keys, SWIGTYPE_p_std__vectorT_std__string_t values, SWIGTYPE_p_std__chrono__microseconds timeout) {
     return JAVAFileIOJNI.FileIOInterface_MultiGet__SWIG_0(swigCPtr, this, SWIGTYPE_p_std__vectorT_int_t.getCPtr(keys), SWIGTYPE_p_std__vectorT_std__string_t.getCPtr(values), SWIGTYPE_p_std__chrono__microseconds.getCPtr(timeout));
   }

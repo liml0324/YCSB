@@ -96,6 +96,14 @@ public class FileIO extends KeyValueIO {
     return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_MultiGet__SWIG_3(swigCPtr, this, SWIGTYPE_p_std__vectorT_std__string_t.getCPtr(keys), SWIGTYPE_p_std__vectorT_std__string_t.getCPtr(values)), true);
   }
 
+  public SWIGTYPE_p_SPTAG__ErrorCode Scan(int start_key, int record_count, SWIGTYPE_p_std__vectorT_SPTAG__ByteArray_t values, SWIGTYPE_p_std__chrono__microseconds timeout) {
+    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Scan__SWIG_0(swigCPtr, this, start_key, record_count, SWIGTYPE_p_std__vectorT_SPTAG__ByteArray_t.getCPtr(values), SWIGTYPE_p_std__chrono__microseconds.getCPtr(timeout)), true);
+  }
+
+  public SWIGTYPE_p_SPTAG__ErrorCode Scan(int start_key, int record_count, SWIGTYPE_p_std__vectorT_SPTAG__ByteArray_t values) {
+    return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Scan__SWIG_1(swigCPtr, this, start_key, record_count, SWIGTYPE_p_std__vectorT_SPTAG__ByteArray_t.getCPtr(values)), true);
+  }
+
   public SWIGTYPE_p_SPTAG__ErrorCode Put(int key, String value) {
     return new SWIGTYPE_p_SPTAG__ErrorCode(JAVAFileIOJNI.FileIO_Put__SWIG_0(swigCPtr, this, key, value), true);
   }
