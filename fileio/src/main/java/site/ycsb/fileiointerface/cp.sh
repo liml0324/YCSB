@@ -12,6 +12,8 @@ cp /home/lml/SPFresh/Release/SWIGTYPE_p_std__vectorT_int_t.java /home/lml/YCSB/f
 cp /home/lml/SPFresh/Release/SWIGTYPE_p_std__vectorT_std__string_t.java /home/lml/YCSB/fileio/src/main/java/site/ycsb/fileiointerface/SWIGTYPE_p_std__vectorT_std__string_t.java
 cp /home/lml/SPFresh/Release/SWIGTYPE_p_unsigned_int.java /home/lml/YCSB/fileio/src/main/java/site/ycsb/fileiointerface/SWIGTYPE_p_unsigned_int.java
 cp /home/lml/SPFresh/Release/SWIGTYPE_p_SPTAG__ByteArray.java /home/lml/YCSB/fileio/src/main/java/site/ycsb/fileiointerface/SWIGTYPE_p_SPTAG__ByteArray.java
+cp /home/lml/SPFresh/Release/SWIGTYPE_p_std__vectorT_SPTAG__ByteArray_t.java /home/lml/YCSB/fileio/src/main/java/site/ycsb/fileiointerface/SWIGTYPE_p_std__vectorT_SPTAG__ByteArray_t.java
+
 
 rm /home/lml/YCSB/fileio/src/main/native/libJAVASPTAGFileIO.so
 cp /home/lml/SPFresh/Release/libJAVASPTAGFileIO.so /home/lml/YCSB/fileio/src/main/native/libJAVASPTAGFileIO.so

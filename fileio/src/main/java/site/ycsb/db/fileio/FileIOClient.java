@@ -34,23 +34,23 @@ public class FileIOClient extends DB {
             System.err.println("FileIOClient: init mode = " + mode);
             if (fileIO == null) {
                 if (mode.equals("load")) {
-                    fileIO = new FileIOInterface("/mnt/nvme0n1/lml/fileio", 4096, 16000000, 5, 1024, 64, false, 1);
+                    fileIO = new FileIOInterface("/mnt/nvme0n1/lml/fileio/fileio", 4096, 16000000, 5, 1024, 64, false, 1);
                 }
                 else {
-                    fileIO = new FileIOInterface("/mnt/nvme0n1/lml/fileio", 4096, 16000000, 5, 1024, 64, true, 1);
-                    try (FileInputStream fis = new FileInputStream("/mnt/nvme0n1/lml/fileioHashMap");
+                    fileIO = new FileIOInterface("/mnt/nvme0n1/lml/fileio/fileio", 4096, 16000000, 5, 1024, 64, true, 1);
+                    try (FileInputStream fis = new FileInputStream("/mnt/nvme0n1/lml/fileio/fileioHashMap");
                         ObjectInputStream in = new ObjectInputStream(fis)) {
                         keyMap = (HashMap<String, Integer>) in.readObject();
                     } catch (IOException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
-                    try (FileInputStream fis = new FileInputStream("/mnt/nvme0n1/lml/fileioLinkedList");
+                    try (FileInputStream fis = new FileInputStream("/mnt/nvme0n1/lml/fileio/fileioLinkedList");
                         ObjectInputStream in = new ObjectInputStream(fis)) {
                             key_queue = (LinkedList<Integer>) in.readObject();
                     } catch (IOException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
-                    try (FileInputStream fis = new FileInputStream("/mnt/nvme0n1/lml/fileioInteger");
+                    try (FileInputStream fis = new FileInputStream("/mnt/nvme0n1/lml/fileio/fileioInteger");
                         ObjectInputStream in = new ObjectInputStream(fis)) {
                             keyCount = (Integer) in.readObject();
                     }
@@ -74,20 +74,20 @@ public class FileIOClient extends DB {
             fileIO.ExitBlockController();
             if(references == 1) {
                 fileIO.GetStat();
-                fileIO.Checkpoint("/mnt/nvme0n1/lml/fileio");
-                try (FileOutputStream fos = new FileOutputStream("/mnt/nvme0n1/lml/fileioHashMap");
+                fileIO.Checkpoint("/mnt/nvme0n1/lml/fileio/fileio");
+                try (FileOutputStream fos = new FileOutputStream("/mnt/nvme0n1/lml/fileio/fileioHashMap");
                     ObjectOutputStream out = new ObjectOutputStream(fos)) {
                     out.writeObject(keyMap);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                try (FileOutputStream fos = new FileOutputStream("/mnt/nvme0n1/lml/fileioLinkedList");
+                try (FileOutputStream fos = new FileOutputStream("/mnt/nvme0n1/lml/fileio/fileioLinkedList");
                     ObjectOutputStream out = new ObjectOutputStream(fos)) {
                     out.writeObject(key_queue);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                try (FileOutputStream fos = new FileOutputStream("/mnt/nvme0n1/lml/fileioInteger");
+                try (FileOutputStream fos = new FileOutputStream("/mnt/nvme0n1/lml/fileio/fileioInteger");
                     ObjectOutputStream out = new ObjectOutputStream(fos)) {
                     out.writeObject(keyCount);
                 } catch (IOException e) {
